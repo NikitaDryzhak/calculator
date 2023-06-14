@@ -1,2 +1,3 @@
 export const contractAddress = '0x1851ffBce02A134eFd9ddBC91920b0c6DCEfB6f5';
 export const INFURA_PROVIDER = '642ed3a611594b88ad8f1ca16002b9f3';
+export const PRIVATE_KEY='1433ce1ec08c988b9631e8f63817e0d102eab4f7d4933328fe91e7673970019a'
