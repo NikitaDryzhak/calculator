@@ -9,7 +9,7 @@ import {
   resultContainer,
   connectMetamaskBtn,
 } from '../utils/refs';
-import { contractWithWallet } from '../services/contractDetails.js';
+import { contractWithWallet, wallet } from '../services/contractDetails.js';
 import Notiflix from 'notiflix';
 import sendTransaction from './sendTransaction';
 calculateButton.addEventListener('click', onClickCalculateBtn);
@@ -103,3 +103,6 @@ function reset() {
   digitB.value = null;
   operation.value = 'add';
 }
+
+
+
