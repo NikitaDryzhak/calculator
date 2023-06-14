@@ -171,6 +171,7 @@ input::-webkit-inner-spin-button {
   border-radius: 5px;
   text-align: center;
   background: linear-gradient(to right, #0660bb, #114fcc, #134be4);
+  max-width: 500px;
   width: 50%;
   color: rgb(255, 255, 255);
   font-weight: 500;
