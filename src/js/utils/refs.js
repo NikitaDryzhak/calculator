@@ -6,3 +6,4 @@ export const resultContainer = document.querySelector('.result__container');
 export const calculateButton = document.querySelector('.button');
 export const usageCounter = document.querySelector('.usageCounter');
 export const loader = document.querySelector('.loader');
+export const connectMetamaskBtn = document.querySelector('.connect__metamask')

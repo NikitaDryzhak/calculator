@@ -7,31 +7,57 @@ import {
   result,
   loader,
   resultContainer,
+  connectMetamaskBtn,
 } from '../utils/refs';
 import { contractWithWallet } from '../services/contractDetails.js';
 import Notiflix from 'notiflix';
 import sendTransaction from './sendTransaction';
 calculateButton.addEventListener('click', onClickCalculateBtn);
-
-calculateButton.disabled = true;
+connectMetamaskBtn.addEventListener('click', onConnectMetamask);
 usageCounter.hidden = true;
 resultContainer.hidden = false;
 loader.hidden = true;
-
-onCheckMetamaskConnect();
-function onCheckMetamaskConnect() {
-  if (window.ethereum !== 'undefined') {
-    ethereum.request({ method: 'eth_requestAccounts' }).then(accounts => {
-      const account = accounts[0];
-      if (account.length > 0) {
+let account;
+detectMetamask();
+function detectMetamask() {
+  if (typeof window.ethereum !== 'undefined') {
+    return;
+  }
+  Notiflix.Notify.info('Please install Metamask');
+}
+checkConnectedMetamask();
+function checkConnectedMetamask() {
+  window.ethereum
+    .request({ method: 'eth_accounts' })
+    .then(res => {
+      if (res.length > 0) {
+        connectMetamaskBtn.hidden = true;
         enableCalculator();
       }
+    })
+    .catch(err => {
+      console.error(err);
     });
+}
+async function onConnectMetamask() {
+  const accounts = await window.ethereum
+    .request({ method: 'eth_requestAccounts' })
+    .catch(err => {
+      if (err.code === 4001) {
+        console.log('Please connect to Metamask');
+      } else {
+        console.log(err);
+      }
+    });
+  account = accounts[0];
+  if (account.length > 0) {
+    connectMetamaskBtn.hidden = true;
+    enableCalculator();
   }
 }
 
 function enableCalculator() {
-  calculateButton.disabled = false;
+  calculateButton.removeAttribute('disabled');
   usageCounter.hidden = false;
 }
 
