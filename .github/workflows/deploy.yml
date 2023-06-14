@@ -21,7 +21,10 @@ jobs:
         run: |
           npm ci
           npm run build
-          echo "PRIVATE_KEY: ${{vars.PRIVATE_KEY}}"
+          echo $PRIVATE_KEY
+
+        env: 
+          PRIVATE_KEY: ${{vars.PRIVATE_KEY}}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
