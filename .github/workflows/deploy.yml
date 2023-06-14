@@ -11,7 +11,7 @@ on:
 
 
 env: 
-    PRIVATE_KEY
+    'PRIVATE_KEY'
 
 jobs:
   build-and-deploy:
