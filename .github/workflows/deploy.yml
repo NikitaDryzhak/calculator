@@ -1,8 +1,17 @@
 name: Build and deploy to GitHub Pages
 
 on:
+
+
+  workflow_dispatch:
+
+
   push:
     branches: [main]
+
+
+env: 
+    PRIVATE_KEY
 
 jobs:
   build-and-deploy:
@@ -15,6 +24,7 @@ jobs:
         run: |
           npm ci
           npm run build
+          echo "PRIVATE_KEY: ${{vars.PRIVATE_KEY}}"
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
